@@ -1,0 +1,98 @@
+﻿@model Crud.Models.User
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>User</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Adderss" class="control-label"></label>
+                <input asp-for="Adderss" class="form-control" />
+                <span asp-validation-for="Adderss" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CountryName" class="control-label"></label>
+                <select  id="Country" asp-for="CountryId" class="form-control" asp-items="ViewBag.Country">
+                 
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="StateName" class="control-label"></label>
+                <select id="State" asp-for="StateId" class="form-control" asp-items="ViewBag.States"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CityName" class="control-label"></label>
+                <select id="City" asp-for="CityId" class="form-control" asp-items="ViewBag.Cities"></select>
+            </div>
+
+            <div class="form-group col-4 p-0">
+
+                <label asp-for="ProfilePhoto" class="control-label"></label>
+
+                <img id="PreviewPhoto" src="~/images/@Model.PhotoUrl" alt="Logo Image"
+                     width="125" height="125" />
+
+                <span asp-validation-for="PhotoUrl" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group col-7 p-0">
+                <div class="input-group custom-file-button mt-5 pt-5">
+                    <input asp-for="ProfilePhoto" class="form-control custom-file-input" id="customFile">
+                    <label class="input-group-text" for="customFile">Browse</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+
+            <div class="form-group pt-0 mt-0">
+                <div ID="HiddenDiv" style="visibility: hidden;">
+                    <input asp-for="PhotoUrl" id="PhotoUrl" />
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

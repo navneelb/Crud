@@ -1,0 +1,109 @@
+﻿@model Crud.Models.User
+
+@{
+    ViewData["Title"] = "Create";
+}
+@if (TempData["Msg"] != null)
+{
+    <h4 class="text-danger">@TempData["Msg"].ToString()</h4>
+}
+<h1>Create</h1>
+    <h4>User</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } }) <br />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } }) <br />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+
+
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } }) <br />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+
+
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } }) <br />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+
+
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Adderss, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.Adderss, new { htmlAttributes = new { @class = "form-control" } }) <br />
+                    <span asp-validation-for="Adderss" class="text-danger"></span>
+
+                    <div class="form-group">
+                        <label asp-for="CountryName" class="control-label"></label>
+                        <select id="Country" asp-for="CountryId" class="form-control" >
+                            <option>---Select Country-----</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="StateName" class="control-label"></label>
+                        <select id="State" asp-for="StateId" class="form-control" ></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CityName" class="control-label"></label>
+                        <select id="City" asp-for="CityId" class="form-control" ></select>
+                    </div>
+                    <div class="col-md-12 btn-group pb-2">
+
+                        <div class="form-group col-4 p-0">
+
+                            <label asp-for="ProfilePhoto" class="control-label"></label>
+
+                            <img id="PreviewPhoto" src="~/images/noimage.png" alt="Logo Image"
+                                 width="125" height="125" />
+
+                            <span asp-validation-for="PhotoUrl" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="col-1 p-0">
+                        </div>
+                        <div class="form-group col-7 p-0">
+                            
+                            <div class="input-group custom-file-button mt-5 pt-5">
+                                <input asp-for="ProfilePhoto" type="file" class="form-control custom-file-input" id="customFile">
+                                <label class="input-group-text" for="customFile">Browse</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+
+</form>
+        </div>
+    </div>
+
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<script src="~/js/site.js"></script>
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
+
+
+
